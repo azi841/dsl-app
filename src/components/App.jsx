@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import Dashboard from "./Dashboard";
 
-import "./styles.css";
+import "./App.css";
 
 function App() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   // User Login info
   const database = [
@@ -48,7 +50,6 @@ function App() {
     } else {
       // Username not found
       setIsSubmitted(false);
-
       setErrorMessages({ name: "uname", message: errors.uname });
     }
   };
@@ -78,7 +79,7 @@ function App() {
         </div>
         <div>
           {isSubmitted
-          ? <Dashboard></Dashboard>
+          ? navigate("/dashboard")
           : App
           }
         </div>
@@ -86,14 +87,7 @@ function App() {
     </div>
   );
 }
-  /*return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
-    </div>
-  );*/
+
 
 
 export default App;

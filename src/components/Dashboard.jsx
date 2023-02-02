@@ -1,7 +1,25 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import "./Dashboard.css";
 
 
-const Dashboard = () => <h1>Dashboard</h1>
+const Dashboard = (props) => {
+
+    const navigate = useNavigate();
+    return(
+        <>
+            <div className="Box">
+                <div className="Title">
+                    <h1>Dashboard</h1>
+                </div>
+                <div>
+                    <button className="Button" onClick={() => navigate(-1)}>Go Back</button>
+                </div>
+            </div>                       
+        </>
+    )
+
+}
 
 export default Dashboard;
