@@ -14,7 +14,7 @@ const Dashboard = (props) => {
                     <h1>Dashboard</h1>
                 </div>
                 <div>
-                    <button className="Button" onClick={() => navigate(-1)}>Go Back</button>
+                    <button className="Button" onClick={() => navigate(-1)}>Log out</button>
                 </div>
             </div>                       
         </>

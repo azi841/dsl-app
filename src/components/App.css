@@ -19,10 +19,13 @@
   .form {
     background-color: white;
     padding: 2rem;
-    top: 30%;
-    left: 43%;
-    position: absolute;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*Center positioning*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
   }
   
 
