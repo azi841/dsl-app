@@ -4,26 +4,21 @@ import React from "react";
 
 import "./Dashboard.css";
 
-const people =[
-  "User1",
-  "User2",
-  "User3",
-  "User4"
-];
+import ReactScrollableList from './dist/index'
 
-const Dashboard = (props) => {
+
+let people =[];
+const user = "User";
+
+for(let i = 0; i<100;i++){
+    let num = i+1;
+    let str = num.toString();    
+    people.push({id:i, content:user+str})
+}
+
+const Dashboard = () => {
     
-    const [searchTerm, setSearchTerm] = React.useState("");
-    const [searchResults, setSearchResults] = React.useState([]);
-    const handleChange = event => {
-       setSearchTerm(event.target.value);
-    }
-    React.useEffect(() => {
-        const results = people.filter(person =>
-            person.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            setSearchResults(results);
-        }, [searchTerm]);
+  
     const navigate = useNavigate();
     return(
         <>
@@ -35,14 +30,17 @@ const Dashboard = (props) => {
                     <input 
                     type ="text"
                     placeholder="Search"
-                    value={searchTerm}
-                    onChange={handleChange}
                     />
+                    {/*
                     <ul>
-                        {searchResults.map(item => (
-                            <li>{item}</li>
-                        ))}
-                    </ul>
+                    {people.map((people) => <li key={people.id}>{people.username}</li>)}
+                    </ul>*/}
+                    <ReactScrollableList
+                    listItems={people}
+                    heightOfItem={30}
+                    maxItemsToRender={20}
+                    style={{ color: '#333' }}
+                    />
                 </div>
                 <div>
                     <button className="Button" onClick={() => navigate(-1)}>Log out</button>
