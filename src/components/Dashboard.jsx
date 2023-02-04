@@ -41,35 +41,36 @@ const Dashboard = () => {
     const navigate = useNavigate();
     return(
         
-            <div className="Box">
+            <>
+            <div className="Box1">
                 <div className="Title">
                     <h1>Dashboard</h1>
                 </div>
                 <div className="Search">
-                    <input 
-                    type ="search"
-                    value={person}
-                    onChange={filter}
-                    className="input"
-                    placeholder="Search"
-                    />
-                    
-                    <div className="List">
-                        {foundPerson&&foundPerson.length > 0 ?(
-                                foundPerson.map((person)=>(
-                            <li key = {person.id} className="person">
-                                <span className="person-id">{person.uname}</span>
-                            </li>
-                            ))
-                            ) : (
-                                <h5>No results found!</h5>
-                            )}
-                    </div>
+                    <input
+                        type="search"
+                        value={person}
+                        onChange={filter}
+                        className="input"
+                        placeholder="Search" />
+
                 </div>
                 <div>
                     <button className="Button" onClick={() => navigate(-1)}>Log out</button>
                 </div>
-            </div>                       
+            </div>
+            <div className="List">
+                {foundPerson && foundPerson.length > 0 ? (
+                    foundPerson.map((person) => (
+                        <li key={person.id} className="person">
+                            <span className="person-id">{person.uname}</span>
+                        </li>
+                    ))
+                ) : (
+                    <h5>No results found!</h5>
+                )}
+            </div>
+            </>                     
         
     )
 
