@@ -7,14 +7,44 @@ import "./Dashboard.css";
 import ReactScrollableList from './dist/index'
 
 
-let people =[];
+let people =[
+    {
+        id:1, 
+        uname: "User1"
+    },
+    {
+        id:2, 
+        uname:"User2"
+    },
+    {
+        id:3, 
+        uname:"User3"
+    },
+    {
+        id:4, 
+        uname:"User4"
+    },
+    {
+        id:5,
+        uname:"User5"
+    },
+    {
+        id:6,
+        uname:"User6"
+    },
+    {
+        id:7,
+        uname:"User7"
+    }
+];
 const strUser = "User";
 
-for(let i = 0; i<100;i++){
+/*for(let i = 0; i<100;i++){
     let num = i+1;
     let str = num.toString();    
     people.push({id:i, content:strUser+str})
 }
+*/
 
 const Dashboard = () => {
     
@@ -26,7 +56,7 @@ const Dashboard = () => {
 
         if (keyword !== '') {
             const results = people.filter((user) => {
-                return user.value.toLowerCase().startsWith(keyword.toLowerCase());
+                return user.uname.toLowerCase().startsWith(keyword.toLowerCase());
             });
             setFoundPerson(results);
         } else{
@@ -39,7 +69,7 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
     return(
-        <>
+        
             <div className="Box">
                 <div className="Title">
                     <h1>Dashboard</h1>
@@ -52,32 +82,24 @@ const Dashboard = () => {
                     className="input"
                     placeholder="Search"
                     />
-                    {/*
-                    <ul>
-                    {people.map((people) => <li key={people.id}>{people.username}</li>)}
-                    </ul>*/}
-                    <div>
-                        <ReactScrollableList
+                    
+                    <div className="List">
                         {foundPerson&&foundPerson.length > 0 ?(
-                            foundPerson.map((person)=>(
-                                
-                                listItems={people}
-                                heightOfItem={30}
-                                maxItemsToRender={20}
-                                style={{ color: '#333' }}
-                                
+                                foundPerson.map((person)=>(
+                            <li key = {person.id} className="person">
+                                <span className="person-id">{person.uname}</span>
+                            </li>
                             ))
-                        ) : (
-                            <h1>No results found!</h1>
-                        )}
-                        />
+                            ) : (
+                                <h5>No results found!</h5>
+                            )}
                     </div>
                 </div>
                 <div>
                     <button className="Button" onClick={() => navigate(-1)}>Log out</button>
                 </div>
             </div>                       
-        </>
+        
     )
 
 }

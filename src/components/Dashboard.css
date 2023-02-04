@@ -50,3 +50,9 @@ button {
     border-bottom: #ddd solid 1px;
     pointer-events: none;
   }
+
+  .List{
+    overflow: scroll;
+    width: 100px; 
+    height: 80px;
+  }
