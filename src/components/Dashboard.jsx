@@ -11,9 +11,8 @@ let people =[];
 const strUser = "User";
 
 for(let i = 0; i<100;i++){
-    let num = i+1;
-    let str = num.toString();    
-    people.push({id:i, uname:strUser+str})
+    let num = i+1;  
+    people.push({id:i, uname:strUser+num})
 }
 
 
