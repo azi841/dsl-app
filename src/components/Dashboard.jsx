@@ -4,7 +4,7 @@ import React from "react";
 
 import "./Dashboard.css";
 
-import ReactScrollableList from './dist/index'
+
 
 
 let people =[];
