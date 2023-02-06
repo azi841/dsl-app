@@ -21,4 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 85c3c404399066880f2c4b37d5daf2a4b138a1f9
 /src/hcv.jsx
