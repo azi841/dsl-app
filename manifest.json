@@ -1,0 +1,12 @@
+{
+    "manifest_version":2,
+    "name": "Auto-submit form",
+    "version": "1.0",
+
+    "content_scripts": [
+        {
+            "matches": ["url"], //add url
+            "js": ["code"] //add code
+        }
+    ]
+}
