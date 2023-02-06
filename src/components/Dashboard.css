@@ -1,4 +1,4 @@
-.Box {
+.Box1 {
     background-color: white;
     padding: 2rem; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -27,32 +27,15 @@ button {
     justify-content: center;
 }
 
-.List {
-    float:right;
+
+.List{
+  overflow: scroll;
+  width: 300px; 
+  height: 300px;
+  float: right;
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
-
-.react-scrollable-list {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 300px;
-    width: 400px;
-    overflow-y: scroll;
-    border: #ddd solid 1px;
-  }
-  .react-scrollable-list-item {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 30px;
-    padding: 5px;
-    background-color: #f2f2f2;
-    border-bottom: #ddd solid 1px;
-    pointer-events: none;
-  }
-
-  .List{
-    overflow: scroll;
-    width: 100px; 
-    height: 80px;
-  }
