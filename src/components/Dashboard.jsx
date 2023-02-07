@@ -18,6 +18,8 @@ for(let i = 0; i<100;i++){
 
 
 const Dashboard = () => {
+
+    const navigate = useNavigate();
     
     const [person, setPerson] = useState('');
     const [foundPerson, setFoundPerson] = useState(people);
@@ -40,21 +42,26 @@ const Dashboard = () => {
          else{
             setFoundPerson(people);
         }
-
-        /*if (_.isInteger(keyword)){
-            const results = people.filter((user) => {
-                return user.id.toString().startsWith(keyword.toLowerCase());
-            });
-            setFoundPerson(results);
-        } else {
-            setFoundPerson(people);
-        }*/
         setPerson(keyword);
     }
 
+
+
+    const [text, setText] = useState('');
+
+    const inputHandler = event => {
+        setText(event.target.value);
+    }
+
+    const copy = async() =>{
+        await navigator.clipboard.readText(text);
+        alert('asd0');
+    }
+
+    
+    
     
 
-    const navigate = useNavigate();
     return(
         
             <>
@@ -79,7 +86,7 @@ const Dashboard = () => {
                 {foundPerson.length > 0? (
                     foundPerson.map((person) => (
                         <li key={person.id} className="person">
-                            <span className="person-id">{person.uname} {person.pass} <a href={person.href}>Open</a></span>
+                            <span className="person-id">{person.uname}<button onClick={()=>{navigator.clipboard.writeText(person.pass);}}>Copy password</button><a href={person.href}>Open</a></span>
                         </li>
                     ))
                 ) : (

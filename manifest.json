@@ -5,8 +5,8 @@
 
     "content_scripts": [
         {
-            "matches": ["url"], //add url
-            "js": ["code"] //add code
+            "matches": ["<all_urls>"], 
+            "js": ["man.js"] 
         }
     ]
 }
