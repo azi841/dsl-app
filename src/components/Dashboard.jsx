@@ -1,6 +1,15 @@
-import { useEffect, useState} from "react";
+import { Suspense, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+
+import { firestore, auth } from "../firebase";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+
+import {collection, addDoc} from 'firebase/firestore';
+
+
+
 
 import "./Dashboard.css";
 
@@ -17,7 +26,38 @@ for(let i = 0; i<100;i++){
 }
 
 
-const Dashboard = () => {
+function Dashboard () {
+
+
+    const [User, setUser]=useState("");
+
+    //FIREBASE
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+    //
+
+   /* const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (User !== "") {
+            await addDoc(collection(db, "users"), {
+                User,
+                completed: false,
+            });
+            setUser("");
+        }
+    }*/
+
+
 
     const navigate = useNavigate();
     
@@ -45,26 +85,18 @@ const Dashboard = () => {
         setPerson(keyword);
     }
 
-
-
-    const [text, setText] = useState('');
-
-    const inputHandler = event => {
-        setText(event.target.value);
-    }
-
-    const copy = async() =>{
-        await navigator.clipboard.readText(text);
-        alert('asd0');
-    }
-
     
-    
-    
-
     return(
         
             <>
+            
+            <form onSubmit={handleSubmit}>
+      <input type="email" value={email} onChange={event => setEmail(event.target.value)} />
+      <input type="password" value={password} onChange={event => setPassword(event.target.value)} />
+      <button type="submit">Register</button>
+      {errorMessage && <div>{errorMessage}</div>}
+    </form>
+          
             <div className="Box1">
                 <div className="Title">
                     <h1>Dashboard</h1>
