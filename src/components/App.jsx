@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from "react-dom";
-import Dashboard from "./Dashboard";
 import { firestore, auth } from "../firebase";
 import {signInWithEmailAndPassword } from "firebase/auth";
 
@@ -11,7 +9,6 @@ import "./App.css";
 
 function App() {
   // React States
-  const [errorMessages, setErrorMessages] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
