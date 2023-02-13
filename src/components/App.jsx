@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { firestore, auth } from "../firebase";
 import {signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {Header, Footer} from "./hf/hf"
+
 
  
 
@@ -9,7 +11,7 @@ import "./App.css";
 import { useEffect } from "react";
 import { useRef } from "react";
 
-function App() {
+const App =() =>{
   // React States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,6 +65,8 @@ function App() {
   // JSX code for login form
   
   return (
+    <>
+    <Header/>
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -80,6 +84,8 @@ function App() {
         </div>
       </form>
     </div>
+    <Footer />
+    </>
   );
   
 

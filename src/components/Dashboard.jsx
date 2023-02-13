@@ -1,6 +1,7 @@
 import { useEffect, useState} from "react";
 import { useNavigate, useHistory  } from "react-router-dom";
 import React from "react";
+import {Header, Footer} from "./hf/hf"
 
 import { db, auth } from "../firebase";
 import {collection, addDoc, Timestamp, onSnapshot, query} from 'firebase/firestore'
@@ -33,9 +34,9 @@ const Dashboard= ()=> {
 
 
     const [searchTerm, setSearchTerm] = useState("");
-    const handleSearch = event => {
+    /*const handleSearch = event => {
         setSearchTerm(event.target.value);
-      };
+      };*/
 
     //FIREBASE AUTH
     const [email, setEmail] = useState('');
@@ -127,13 +128,15 @@ const Dashboard= ()=> {
         return (
           (user.name.first + " " + user.name.last).toLowerCase().includes(searchTerm.toLowerCase()) ||
           user.nid.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.location.toLowerCase().includes(searchTerm.toLocaleLowerCase()) 
+          user.location.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+          (user.name.last + " " + user.name.first).toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
     
     return(
       
             <>
+                <Header />
                 <div>
                 <input
                 type="text"
@@ -191,7 +194,8 @@ const Dashboard= ()=> {
       <button onClick={handleLogout}>Logout</button>
 
     </div>
-            </>                     
+    <Footer />
+    </>                     
         
     )
 
