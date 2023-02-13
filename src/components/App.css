@@ -9,6 +9,12 @@
     color: #fff;
     padding: 10px 20px;
   }
+
+  .header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
   
   
   .button-container {
@@ -16,6 +22,18 @@
     justify-content: center;
   }
   
+
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+  }
+
   .form {
     background-color: white;
     padding: 2rem;

@@ -66,7 +66,7 @@ const App =() =>{
   
   return (
     <>
-    <Header/>
+    <header className="header"></header>
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -84,7 +84,11 @@ const App =() =>{
         </div>
       </form>
     </div>
-    <Footer />
+    <footer className="footer">
+      <p className="footer-text">
+        Copyright &copy; {new Date().getFullYear()} All rights reserved.
+      </p>
+    </footer>
     </>
   );
   
