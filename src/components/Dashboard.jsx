@@ -58,7 +58,9 @@ const Dashboard= ()=> {
           (user.name.first + " " + user.name.last).toLowerCase().includes(searchTerm.toLowerCase()) ||
           user.nid.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user.location.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
-          (user.name.last + " " + user.name.first).toLowerCase().includes(searchTerm.toLowerCase())
+          (user.name.last + " " + user.name.first).toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (user.name.first + "" + user.name.last).toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (user.name.last + "" + user.name.first).toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
     
