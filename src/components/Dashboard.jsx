@@ -1,11 +1,11 @@
 import { useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useHistory  } from "react-router-dom";
 import React from "react";
 
 import { db, auth } from "../firebase";
 import {collection, addDoc, Timestamp, onSnapshot, query} from 'firebase/firestore'
 
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut  } from 'firebase/auth';
 
 
 
@@ -28,6 +28,9 @@ for(let i = 0; i<100;i++){
 
 
 const Dashboard= ()=> {
+
+  const navigate = useNavigate();
+
 
     const [searchTerm, setSearchTerm] = useState("");
     const handleSearch = event => {
@@ -82,10 +85,25 @@ const Dashboard= ()=> {
             alert(err)
         };
     }
+
+      const handleLogout = () =>{
+        signOut(auth).then(() => {
+          console.log('user signed out');
+          navigate('/');
+        });
+      };
+    
+
+      useEffect(() => {
+        onAuthStateChanged(auth, user =>{
+          if (!user) {
+            navigate('/');
+          }
+        })
+      }, [navigate]);
+    
        
     //
-
-    const navigate = useNavigate();
     
 
     const [users, setUsers] = useState([]);
@@ -107,10 +125,9 @@ const Dashboard= ()=> {
 
     const filteredUsers = users.filter(user => {
         return (
-          user.name.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.name.last.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (user.name.first + " " + user.name.last).toLowerCase().includes(searchTerm.toLowerCase()) ||
           user.nid.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user.location.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+          user.location.toLowerCase().includes(searchTerm.toLocaleLowerCase()) 
         );
       });
     
@@ -171,6 +188,8 @@ const Dashboard= ()=> {
           </div>
         ))}
       </div>
+      <button onClick={handleLogout}>Logout</button>
+
     </div>
             </>                     
         

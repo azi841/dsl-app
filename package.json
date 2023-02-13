@@ -31,6 +31,7 @@
     "file-loader": "^6.2.0",
     "firebase": "^9.17.1",
     "firebase-auth": "^0.1.2",
+    "firebase-tools": "^11.22.0",
     "flatlist-react": "^1.5.8",
     "fs": "0.0.1-security",
     "fs-extra": "^10.1.0",
