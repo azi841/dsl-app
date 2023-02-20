@@ -11,6 +11,8 @@
 # production
 /build
 
+src/firebase.jsx
+
 # misc
 .DS_Store
 .env.local
@@ -27,4 +29,3 @@ yarn-error.log*
 >>>>>>> 85c3c404399066880f2c4b37d5daf2a4b138a1f9
 /src/hcv.jsx
 
-/src/firebase.js

@@ -1,7 +1,8 @@
 import { useEffect, useState} from "react";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import {Header, Footer} from "./hf/hf"
+import {EditUser} from "./EditUser.jsx"
 
 import { db, auth } from "../firebase";
 import {collection,  onSnapshot, query} from 'firebase/firestore'
@@ -19,7 +20,9 @@ const Dashboard= ()=> {
     const [searchTerm, setSearchTerm] = useState("");
 
     const [users, setUsers] = useState([]);
-  
+    const [editing, setEditing] = useState(null);
+
+
 
     useEffect( () => {
       const q = query(collection(db, "users")); 
@@ -81,8 +84,11 @@ const Dashboard= ()=> {
                   <p style={styles.userName}>
                     {user.name.first} {user.name.last}
                   </p>
-                  <p style={styles.userNid}>{user.nid}</p>
-                  <p style={styles.userLocation}>{user.location}</p>
+                  <p style={styles.userNid}>User ID: {user.nid}</p>
+                  <p style={styles.userLocation}>Location: {user.location}</p>
+                  <p>Package: {user.package}</p>
+                  <button onClick={() => setEditing(user.id)}>Edit</button>
+                  {editing === user.id && <EditUser user={user} onCancel={() => setEditing(null)} />}
                 </div>
               ))}
             </div>

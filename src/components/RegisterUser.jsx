@@ -20,6 +20,7 @@ const RegisterUser = () => {
     const [lname, setLname] = useState('');
     const [nid, setNid] = useState('');
     const [location, setLocation] = useState('');
+    const [selectedPackage, setSelectedPackage] = useState('');
 
     const handleCreate = async(e) => {
         e.preventDefault()
@@ -31,6 +32,7 @@ const RegisterUser = () => {
                 },
                 nid: nid,
                 location: location,
+                package: selectedPackage,
                 completed: false,
                 created: Timestamp.now()
             })
@@ -40,6 +42,7 @@ const RegisterUser = () => {
                 setLname('');
                 setNid('');
                 setLocation('');
+                setSelectedPackage('');
                 navigate("/dashboard");
               })
         } 
@@ -94,6 +97,14 @@ const RegisterUser = () => {
                       onChange={(e) => setLocation(e.target.value)}
                       style={{ padding: "0.5rem", marginRight: "1rem", fontSize: "1rem", borderRadius: "5px" }}
                     />
+                  </div>
+                  <div style={{ display: "flex", margin: "1rem 0" }}>
+                    <label style={{ marginRight: "1rem", fontSize: "1rem" }}>Select package:</label>
+                    <select value={selectedPackage} onChange={(e) => setSelectedPackage(e.target.value)} style={{ padding: "0.5rem", fontSize: "1rem", borderRadius: "5px" }}>
+                      <option value="">-- Please select --</option>
+                      <option value="25">Package 25</option>
+                      <option value="30">Package 30</option>
+                    </select>
                   </div>
                   <button onClick={handleCreate} style={{ padding: "0.5rem 1rem", fontSize: "1rem", borderRadius: "5px", backgroundColor: "blue", color: "white" }}>
                     Create user
