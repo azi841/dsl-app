@@ -5,7 +5,7 @@ import {Header, Footer} from "./hf/hf"
 import {EditUser} from "./EditUser.jsx"
 
 import { db, auth } from "../firebase";
-import {collection,  onSnapshot, query} from 'firebase/firestore'
+import {collection,  onSnapshot, query, deleteDoc, doc} from 'firebase/firestore'
 
 import {onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -21,6 +21,8 @@ const Dashboard= ()=> {
 
     const [users, setUsers] = useState([]);
     const [editing, setEditing] = useState(null);
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [userToDelete, setUserToDelete] = useState(null);
 
 
 
@@ -66,7 +68,32 @@ const Dashboard= ()=> {
           (user.name.last + "" + user.name.first).toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
-    
+
+
+      const handleDelete = async (userId) => {
+        console.log("confirmDelete: ", confirmDelete);
+        console.log("userToDelete: ", userToDelete);
+        if (confirmDelete) {
+          try {
+            await deleteDoc(doc(db, "users", userId));
+            console.log("User deleted successfully");
+          } catch (error) {
+            console.error("Error deleting user: ", error);
+          }
+          setUserToDelete(null);
+        }
+      };
+
+      const confirmDeleteUser = (userId) => {
+        console.log("confirmDeleteUser called with userId: ", userId);
+        setUserToDelete(userId);
+        setConfirmDelete(true);
+        console.log("confirmDelete: ", confirmDelete);
+        console.log("userToDelete: ", userToDelete);
+      };
+
+
+
     return( 
       <>
         <Header/> 
@@ -88,18 +115,23 @@ const Dashboard= ()=> {
                   <p style={styles.userLocation}>Location: {user.location}</p>
                   <p>Package: {user.package}</p>
                   <button onClick={() => setEditing(user.id)}>Edit</button>
+                  <button onClick={() => confirmDeleteUser(user.id)}>Delete</button>
                   {editing === user.id && <EditUser user={user} onCancel={() => setEditing(null)} />}
+                  {userToDelete === user.id &&  (
+                    <div>
+                      <p>Are you sure you want to delete this user?</p>
+                      <button onClick={() => handleDelete(user.id)}>Yes</button>
+                      <button onClick={() => setUserToDelete(null)}>No</button>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
             <button onClick={handleLogout}>Logout</button>
-
           </div>
         <Footer />
       </>                     
-        
     )
-
 }
 
 const styles = {

@@ -23,6 +23,10 @@ const RegisterUser = () => {
     const [selectedPackage, setSelectedPackage] = useState('');
 
     const handleCreate = async(e) => {
+      if (!fname || !lname || !nid || !location || !selectedPackage) {
+    alert('Please fill out all fields.');
+    return;
+  }
         e.preventDefault()
         try{
             await addDoc(collection(db, 'users'),{
