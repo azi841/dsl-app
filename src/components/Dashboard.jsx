@@ -114,9 +114,7 @@ const Dashboard= ()=> {
                   </p>
                   <p style={styles.userNid}>User ID: {user.nid}</p>
                   <p style={styles.userLocation}>Location: {user.location}</p>
-                  { user.url &&
-                  <p style={styles.userURL}><a href={user.url} target="_blank">URL</a></p>
-                  }
+                  { user.url && <p style={styles.userURL}><a href={user.url} target="_blank">URL</a></p> }
                   <p>Package: {user.package}</p>
                   <button onClick={() => setEditing(user.id)}>Edit</button>
                   <button onClick={() => confirmDeleteUser(user.id)}>Delete</button>

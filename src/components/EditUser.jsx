@@ -32,6 +32,7 @@ const EditUser = ({ user, onCancel  }) => {
         package: selectedPackage,
       }).then(() => {
         console.log("User updated");
+        onCancel();
       });
     };
 
@@ -72,7 +73,7 @@ const EditUser = ({ user, onCancel  }) => {
           <option value="25">Package 25</option>
           <option value="30">Package 30</option>
         </select>
-        <button type="submit">Save</button>
+        <button type="submit" >Save</button>
         <button type="button" onClick={handleCancel}>Cancel</button>
       </form>
     );
