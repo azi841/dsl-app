@@ -20,6 +20,7 @@ const RegisterUser = () => {
     const [lname, setLname] = useState('');
     const [nid, setNid] = useState('');
     const [location, setLocation] = useState('');
+    const [url, setUrl] = useState('');
     const [selectedPackage, setSelectedPackage] = useState('');
 
     const handleCreate = async(e) => {
@@ -37,6 +38,7 @@ const RegisterUser = () => {
                 nid: nid,
                 location: location,
                 package: selectedPackage,
+                url: url,
                 completed: false,
                 created: Timestamp.now()
             })
@@ -47,6 +49,7 @@ const RegisterUser = () => {
                 setNid('');
                 setLocation('');
                 setSelectedPackage('');
+                setUrl('');
                 navigate("/dashboard");
               })
         } 
@@ -83,6 +86,13 @@ const RegisterUser = () => {
                       placeholder="Last Name"
                       value={lname}
                       onChange={(e) => setLname(e.target.value)}
+                      style={{ padding: "0.5rem", marginRight: "1rem", fontSize: "1rem", borderRadius: "5px" }}
+                    />
+                     <input
+                      type="text"
+                      placeholder="IP URL"
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
                       style={{ padding: "0.5rem", marginRight: "1rem", fontSize: "1rem", borderRadius: "5px" }}
                     />
                   </div>

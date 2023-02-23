@@ -68,6 +68,7 @@ const Dashboard= ()=> {
           (user.name.last + "" + user.name.first).toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
+      
 
 
       const handleDelete = async (userId) => {
@@ -113,6 +114,9 @@ const Dashboard= ()=> {
                   </p>
                   <p style={styles.userNid}>User ID: {user.nid}</p>
                   <p style={styles.userLocation}>Location: {user.location}</p>
+                  { user.url &&
+                  <p style={styles.userURL}><a href={user.url} target="_blank">URL</a></p>
+                  }
                   <p>Package: {user.package}</p>
                   <button onClick={() => setEditing(user.id)}>Edit</button>
                   <button onClick={() => confirmDeleteUser(user.id)}>Delete</button>
@@ -170,6 +174,9 @@ const styles = {
       fontSize: "16px",
     },
     userLocation: {
+      fontSize: "16px",
+    },
+    userURL: {
       fontSize: "16px",
     },
   };
