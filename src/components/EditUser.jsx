@@ -4,7 +4,6 @@ import { db } from "../firebase";
 
 import {updateDoc, doc} from 'firebase/firestore'
 
-import { useNavigate } from "react-router-dom";
 
 import "./Dashboard.jsx"
 
@@ -17,6 +16,7 @@ const EditUser = ({ user, onCancel  }) => {
     const [nid, setNid] = useState(user.nid);
     const [location, setLocation] = useState(user.location);
     const [selectedPackage, setSelectedPackage] = useState(user.package);
+    const [password, setPassword] = useState(user.password)
   
 
     const handleSubmit = (e) => {
@@ -29,6 +29,7 @@ const EditUser = ({ user, onCancel  }) => {
         },
         nid,
         location,
+        password,
         package: selectedPackage,
       }).then(() => {
         console.log("User updated");
@@ -67,6 +68,13 @@ const EditUser = ({ user, onCancel  }) => {
           placeholder="Location"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+        />
+        <input 
+          type="text"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ padding: "0.5rem", marginRight: "1rem", fontSize: "1rem", borderRadius: "5px" }}
         />
        <select value={selectedPackage} onChange={(e) => setSelectedPackage(e.target.value)} style={{ padding: "0.5rem", fontSize: "1rem", borderRadius: "5px" }}>
           <option value="">-- Please select --</option>

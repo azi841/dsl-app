@@ -22,6 +22,7 @@ const RegisterUser = () => {
     const [location, setLocation] = useState('');
     const [url, setUrl] = useState('');
     const [selectedPackage, setSelectedPackage] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleCreate = async(e) => {
       if (!fname || !lname || !nid || !location || !selectedPackage) {
@@ -39,6 +40,7 @@ const RegisterUser = () => {
                 location: location,
                 package: selectedPackage,
                 url: url,
+                password: password,
                 completed: false,
                 created: Timestamp.now()
             })
@@ -50,6 +52,7 @@ const RegisterUser = () => {
                 setLocation('');
                 setSelectedPackage('');
                 setUrl('');
+                setPassword('');
                 navigate("/dashboard");
               })
         } 
@@ -111,6 +114,13 @@ const RegisterUser = () => {
                       onChange={(e) => setLocation(e.target.value)}
                       style={{ padding: "0.5rem", marginRight: "1rem", fontSize: "1rem", borderRadius: "5px" }}
                     />
+                    <input 
+                      type="text"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      style={{ padding: "0.5rem", marginRight: "1rem", fontSize: "1rem", borderRadius: "5px" }}
+                      />
                   </div>
                   <div style={{ display: "flex", margin: "1rem 0" }}>
                     <label style={{ marginRight: "1rem", fontSize: "1rem" }}>Select package:</label>

@@ -93,7 +93,18 @@ const Dashboard= ()=> {
         console.log("userToDelete: ", userToDelete);
       };
 
+      const copyPassword = (pass) => {
+        const tempInput = document.createElement('input');
+        tempInput.value = pass;
+        document.body.appendChild(tempInput);
 
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+
+
+    
 
     return( 
       <>
@@ -114,7 +125,16 @@ const Dashboard= ()=> {
                   </p>
                   <p style={styles.userNid}>User ID: {user.nid}</p>
                   <p style={styles.userLocation}>Location: {user.location}</p>
-                  { user.url && <p style={styles.userURL}><a href={user.url} target="_blank">URL</a></p> }
+                  { user.url && 
+                    <p style={styles.userURL}>
+                      <a 
+                        href={user.url} 
+                        target="_blank" 
+                        onClick={() => { copyPassword(user.password);}}> 
+                        URL
+                      </a>
+                    </p> 
+                  }
                   <p>Package: {user.package}</p>
                   <button onClick={() => setEditing(user.id)}>Edit</button>
                   <button onClick={() => confirmDeleteUser(user.id)}>Delete</button>
